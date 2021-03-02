@@ -2,6 +2,7 @@ package org.generation.blogPessoal.segurança;
 
 import java.util.Collection;
 
+import org.generation.blogPessoal.model.Usuario;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,7 +15,7 @@ public class UserDetailsImpl implements UserDetails{
 	
 	
 	
-	public UserDetailsImpl(String userName, String password) {
+	public UserDetailsImpl(Usuario user) {
 		super();
 		this.userName = userName;
 		this.password = password;
