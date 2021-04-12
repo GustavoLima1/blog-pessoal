@@ -24,12 +24,14 @@ public class Postagem {
 	private long id;
 	
 	@NotNull
-	@Size(min = 5, max = 100)
+	@Size(min = 3, max = 100)
 	private String titulo;
 	
 	@NotNull
-	@Size(min = 10, max = 500)
+	@Size(min = 3, max = 500)
 	private String texto;	
+	
+
 
 	@Temporal(TemporalType.TIMESTAMP)
     private Date data = new java.sql.Date(System.currentTimeMillis());
@@ -37,6 +39,10 @@ public class Postagem {
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
 
 	public long getId() {
 		return id;
@@ -56,6 +62,7 @@ public class Postagem {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
+	
 	public Date getData() {
 		return data;
 	}
@@ -68,7 +75,12 @@ public class Postagem {
 	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
-	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	
 	
 	

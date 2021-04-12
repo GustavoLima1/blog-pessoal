@@ -16,6 +16,16 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository repository;
+	
+	public Usuario atualizar(Usuario usuario) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		String senhaEncoder = encoder.encode(usuario.getSenha());
+		usuario.setSenha(senhaEncoder);
+
+		return repository.save(usuario);
+	}
+
 
 	public Usuario CadastrarUsuario(Usuario usuario) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -41,8 +51,10 @@ public class UsuarioService {
 				String authHeader = "Basic " + new String(encodedAuth);
 
 				user.get().setToken(authHeader);
+				user.get().setId(usuario.get().getId());
 				user.get().setNome(usuario.get().getNome());
-				user.get().setSenha(usuario.get().getSenha());
+				user.get().setFoto(usuario.get().getFoto());
+				user.get().setTipo(usuario.get().getTipo());
 
 				return user;
 			}
